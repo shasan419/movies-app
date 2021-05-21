@@ -1,14 +1,14 @@
 import React from "react";
-const Like = ({ liked, onClick }) => {
-  let classes = "fa fa-heart";
-  if (!liked) classes += "-o";
+
+const Like = (props) => {
   return (
     <i
-      onClick={onClick}
-      style={{ cursor: "pointer" }}
-      className={classes}
+      className={props.liked ? "fa fa-heart" : "fa fa-heart-o"}
       aria-hidden="true"
-    />
+      style={{ cursor: "pointer", color: "red" }}
+      onClick={props.onClick}
+    ></i>
   );
 };
+
 export default Like;
