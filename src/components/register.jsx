@@ -16,7 +16,7 @@ class RegisterForm extends Form {
       .required()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
       .label("Email"),
-    password: Joi.string().required().label("Password"),
+    password: Joi.string().required().min(5).label("Password"),
     name: Joi.string().required().label("Name"),
   };
 
@@ -27,11 +27,11 @@ class RegisterForm extends Form {
   render() {
     return (
       <div>
-        <h1>Login</h1>
+        <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("email", "Email")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderInput("username", "Username")}
+          {this.renderInput("name", "Name")}
           {this.renderButton("Submit")}
         </form>
       </div>
