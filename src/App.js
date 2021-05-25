@@ -1,34 +1,33 @@
-import "./App.css";
+import React, { Component } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import NavBar from "./components/common/NavBar";
 import Movies from "./components/movies";
-import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
-import Navbar from "./components/navbar";
-import NotFound from "./components/notFound";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
-import MovieForm from "./components/movieForm";
+import Register from "./components/register";
+import NotFound from "./components/notFound";
 import LoginForm from "./components/loginForm";
-import RegisterForm from "./components/register";
+import MovieForm from "./components/movieForm";
+import "./App.css";
 
-function App() {
-  return (
-    <div>
-      <Navbar />
-      <main className="container">
-        <Switch>
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <NavBar />
+        <Switch className="navBar">
           <Route path="/login" component={LoginForm} />
-          <Route path="/register" component={RegisterForm} />
-          <Route path="/movies/:id" component={MovieForm}></Route>
-          <Route path="/movies" component={Movies}></Route>
-          <Route path="/customers" component={Customers}></Route>
-          <Route path="/rentals" component={Rentals}></Route>
-          <Route path="/not-found" component={NotFound}></Route>
-          <Redirect from="/" exact to="/movies" />
-          <Redirect to="/not-found" />
+          <Route path="/movies/:id" component={MovieForm} />
+          <Route path="/movies" component={Movies} />
+          <Redirect exact from="/" to="/movies" />
+          <Route path="/customers" component={Customers} />
+          <Route path="/rentals" component={Rentals} />
+          <Route path="/register" component={Register} />
+          <Redirect to="/not-found" component={NotFound} />
         </Switch>
-      </main>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
